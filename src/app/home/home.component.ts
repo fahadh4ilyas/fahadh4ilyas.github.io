@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,10 @@ export class HomeComponent implements OnInit {
 
   isDocCollapsed = true;
 
-  constructor() { }
+  constructor(private _title: Title) { }
 
   ngOnInit(): void {
+    this._title.setTitle("Fahadh's Documentation");
   }
 
 }

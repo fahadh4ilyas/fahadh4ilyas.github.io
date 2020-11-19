@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
@@ -11,9 +12,10 @@ export class AboutComponent implements OnInit {
 
   showing = "Show All";
 
-  constructor() { }
+  constructor(private _title: Title) { }
 
   ngOnInit(): void {
+    this._title.setTitle('About Me')
   }
 
   toggleOne(id: number) {
