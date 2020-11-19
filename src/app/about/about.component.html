@@ -1,0 +1,108 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>About Me</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <img src="assets/images/fahadh.jpg" alt="my picture" width="300" height="300">
+        </div>
+        <div class="col-8">
+            <p>Hi! Click below to see brief intro of me</p>
+            <p>
+                <button type="button" class="btn btn-outline-primary" (click)="toggleOne(0)" [attr.aria-expanded]="!isAboutCollapsed[0]"
+                  aria-controls="collapseExample">
+                  Click me
+                </button>
+              </p>
+            <div [ngbCollapse]="isAboutCollapsed[0]">
+                <div class="card">
+                    <div class="card-body">
+                        <p>My name is Ahmad Fahadh Ilyas. I am usually called Fahadh.</p>
+                        <p>I was born in Jakarta on April 19th.</p>
+                        <p>I was graduated from Universitas Indonesia and my major is Mathematics.</p>
+                        <p>I'm currently working as programmer in a private company since 2018.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Contact Me</h2>
+            <p>
+                <button type="button" class="btn btn-outline-primary" (click)="toggleAll()" [innerHTML]="showing">
+                </button>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <p>
+                <button type="button" class="btn btn-outline-primary" (click)="toggleOne(1)" [attr.aria-expanded]="!isAboutCollapsed[1]"
+                  aria-controls="collapseExample">
+                  Email
+                </button>
+            </p>
+            <div [ngbCollapse]="isAboutCollapsed[1]">
+                <div class="card">
+                    <div class="card-body">
+                        <span>fahadhilyas4@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <p>
+                <button type="button" class="btn btn-outline-primary" (click)="toggleOne(2)" [attr.aria-expanded]="!isAboutCollapsed[2]"
+                  aria-controls="collapseExample">
+                  GitHub
+                </button>
+            </p>
+            <div [ngbCollapse]="isAboutCollapsed[2]">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="https://github.com/fahadh4ilyas">fahadh4ilyas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <p>
+                <button type="button" class="btn btn-outline-primary" (click)="toggleOne(3)" [attr.aria-expanded]="!isAboutCollapsed[3]"
+                  aria-controls="collapseExample">
+                  Telegram
+                </button>
+            </p>
+            <div [ngbCollapse]="isAboutCollapsed[3]">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="https://t.me/fahadh4ilyas">fahadh4ilyas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <p>
+                <button type="button" class="btn btn-outline-primary" (click)="toggleOne(4)" [attr.aria-expanded]="!isAboutCollapsed[4]"
+                  aria-controls="collapseExample">
+                  Twitter
+                </button>
+            </p>
+            <div [ngbCollapse]="isAboutCollapsed[4]">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="https://twitter.com/fahadh4ilyas">fahadh4ilyas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

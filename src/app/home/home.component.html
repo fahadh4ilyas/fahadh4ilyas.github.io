@@ -1,0 +1,31 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <h1>WELCOME TO FAHADH's DOCUMENTATION</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <p>This website contains every documentation that I created by myself</p>
+            <p>The documentation's source mostly from the official documentation. But I made some change so it's easy to understand (at least for me).</p>
+            <p>Here is list of documentation that I made:</p>
+            <p>
+                <button type="button" class="btn btn-outline-primary" (click)="collapse.toggle()" [attr.aria-expanded]="!isDocCollapsed"
+                  aria-controls="collapseExample">
+                  Show List
+                </button>
+              </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div #collapse="ngbCollapse" [(ngbCollapse)]="isDocCollapsed">
+                <div class="list-group">
+                    <a href="/kubernetes-documentation" class="list-group-item list-group-item-action">Kubernetes Documentation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
