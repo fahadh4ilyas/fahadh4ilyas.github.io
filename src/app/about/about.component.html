@@ -43,8 +43,8 @@
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-3">
+    <div class="row d-flex flex-column flex-md-row">
+        <div class="col-md-3">
             <p>
                 <button type="button" class="btn btn-outline-primary" (click)="toggleOne(1)" [attr.aria-expanded]="!isAboutCollapsed[1]"
                   aria-controls="collapseExample">
@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-3">
+        <div class="col-md-3">
             <p>
                 <button type="button" class="btn btn-outline-primary" (click)="toggleOne(2)" [attr.aria-expanded]="!isAboutCollapsed[2]"
                   aria-controls="collapseExample">
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-3">
+        <div class="col-md-3">
             <p>
                 <button type="button" class="btn btn-outline-primary" (click)="toggleOne(3)" [attr.aria-expanded]="!isAboutCollapsed[3]"
                   aria-controls="collapseExample">
@@ -89,7 +89,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-3">
+        <div class="col-md-3">
             <p>
                 <button type="button" class="btn btn-outline-primary" (click)="toggleOne(4)" [attr.aria-expanded]="!isAboutCollapsed[4]"
                   aria-controls="collapseExample">
@@ -99,7 +99,7 @@
             <div [ngbCollapse]="isAboutCollapsed[4]">
                 <div class="card">
                     <div class="card-body">
-                        <a href="https://twitter.com/fahadh4ilyas">fahadh4ilyas</a>
+                        <a href="https://twitter.com/0tothepowerof0">0tothepowerof0</a>
                     </div>
                 </div>
             </div>

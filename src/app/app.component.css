@@ -1,3 +1,10 @@
 .dropdown-item:hover {
     color: #000000!important;
 }
+
+.navbar-brand {
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
