@@ -2,8 +2,19 @@
     color: #000000!important;
 }
 
+span#navbar-brand {
+    height: 42px;
+}
+
+@media (max-width: 768px) {
+    span#navbar-brand {
+        width: calc(100% - 56px);
+    }
+}
+
 .navbar-brand {
     min-width: 0;
+    width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
