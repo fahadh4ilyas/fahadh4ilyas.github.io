@@ -8,17 +8,4 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class AppComponent {
 
-  isNavbarCollapse = true;
-
-  currentUrl: string = "/";
-
-  constructor(private _router: Router) {
-      this._router.events.subscribe(
-        event => {
-          if (event instanceof NavigationEnd) {
-            this.currentUrl = event.url.split('#')[0];
-          }
-        }
-      );
-  }
 }
