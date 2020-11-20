@@ -1,0 +1,9 @@
+#content {
+    position: relative;
+    min-height: calc(100vh - 58px);
+}
+
+.footer {
+    position: relative;
+    flex-basis: 100%;
+}

@@ -1,0 +1,8 @@
+a {
+    color: rgba(255, 255, 255, .5)!important;
+    text-decoration: none!important;
+}
+
+a:hover {
+    color: white!important
+}

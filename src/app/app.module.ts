@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AboutComponent } from './components/about/about.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TopNavbarComponent } from './components/top-navbar/top-navbar.component
     HomeComponent,
     AboutComponent,
     PagenotfoundComponent,
-    TopNavbarComponent
+    TopNavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
