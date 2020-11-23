@@ -1,10 +1,12 @@
 <app-top-navbar></app-top-navbar>
 
 <div class="container-fluid">
-  <div class="row">
-    <div id="content" class="col p-0 d-flex flex-wrap">
+  <div id="content" class="row">
+    <div class="col p-0">
       <div class="col"><router-outlet></router-outlet></div>
-      <div class="footer p-0 align-self-end"><app-footer></app-footer></div>
     </div>
+  </div>
+  <div id="footer" class="row">
+    <div class="col p-0"><app-footer></app-footer></div>
   </div>
 </div>

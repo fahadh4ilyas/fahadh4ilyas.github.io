@@ -1,9 +1,9 @@
-#content {
-    position: relative;
+.container-fluid {
     min-height: calc(100vh - 58px);
 }
 
-.footer {
-    position: relative;
-    flex-basis: 100%;
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
