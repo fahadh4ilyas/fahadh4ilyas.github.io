@@ -251,12 +251,12 @@ body {
 }
 
 #write {
-    max-width: 860px;
+    /* max-width: 860px; */
   	margin: 0;
   	padding: 30px;
 }
 
-@media only screen and (min-width: 1400px) {
+/* @media only screen and (min-width: 1400px) {
 	#write {
 		max-width: 1024px;
 	}
@@ -266,7 +266,7 @@ body {
 	#write {
 		max-width: 1200px;
 	}
-}
+} */
 
 #write > ul:first-child,
 #write > ol:first-child{
@@ -606,20 +606,4 @@ header, .context-menu, .megamenu-content, footer{
 .ty-preferences .nav-group-item.active {
     color: white;
     background: #999;
-}
-
-.prev-next-bottom a.left-prev, .prev-next-bottom a.center-home, .prev-next-bottom a.right-next {
-    padding:10px;
-    border:1px solid rgba(0,0,0,.2);
-    max-width:45%;
-    overflow-x:hidden;
-    color:rgba(0,0,0,.65);
-}
-
-.prev-next-bottom a.left-prev:before, .prev-next-bottom a.center-home:before {
-    content:"<< ";
-}
-
-.prev-next-bottom a.right-next:after, .prev-next-bottom a.center-home:after {
-    content:" >>";
 }
