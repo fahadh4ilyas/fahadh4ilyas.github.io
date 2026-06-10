@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>/docs — fahadh</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-300 font-sans antialiased flex flex-col min-h-screen">
+
+  <div id="navbar-placeholder"></div>
+
+  <main class="flex-1 max-w-3xl mx-auto px-4 py-16 w-full">
+    <h1 class="font-mono text-violet-400 text-2xl mb-2">&gt; ls ./docs/</h1>
+    <p class="text-gray-500 text-sm font-mono mb-8">documentation I've written and curated</p>
+
+    <div class="space-y-4">
+      <!-- Kubernetes -->
+      <a href="/kubernetes-documentation/" class="block border border-gray-800 rounded-lg p-5 bg-gray-900/30 hover:border-violet-700 hover:bg-gray-900/50 transition-all group">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1 min-w-0">
+            <h3 class="font-mono text-violet-400 group-hover:text-violet-300 transition-colors text-base">
+              Kubernetes Documentation
+            </h3>
+            <p class="text-gray-500 text-sm mt-1">Comprehensive Kubernetes guide in Bahasa Indonesia — from setup to advanced concepts like Storage, Access Control, and Pods Controllers.</p>
+          </div>
+          <div class="flex items-center gap-3 flex-shrink-0">
+            <span class="text-xs font-mono px-2 py-0.5 rounded-full border border-gray-700 text-gray-400">20 pages</span>
+            <svg class="w-4 h-4 text-gray-700 group-hover:text-violet-500 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-violet-950/50 text-violet-400 border border-violet-900/50">kubernetes</span>
+          <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-gray-800 text-gray-400 border border-gray-700">docker</span>
+          <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-gray-800 text-gray-400 border border-gray-700">devops</span>
+          <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-gray-800 text-gray-400 border border-gray-700">bahasa-indonesia</span>
+        </div>
+      </a>
+    </div>
+
+    <p class="text-gray-600 text-xs font-mono mt-12">more coming soon...</p>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/components.js"></script>
+</body>
+</html>

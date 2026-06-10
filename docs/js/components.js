@@ -11,6 +11,7 @@ function loadNavbar() {
   const isHome = currentPath.endsWith('/') || currentPath.endsWith('/index.html');
   const isAbout = currentPath.endsWith('/about.html');
   const isRepos = currentPath.endsWith('/repos.html');
+  const isDocs = currentPath.endsWith('/docs.html');
 
   navbar.innerHTML = `
 <nav class="bg-gray-950 border-b border-violet-900/50 sticky top-0 z-50">
@@ -28,7 +29,7 @@ function loadNavbar() {
         <a href="./" class="block px-3 py-2 rounded transition-colors ${isHome ? 'text-violet-400 bg-violet-950/50' : 'text-gray-400 hover:text-violet-400'}">/home</a>
         <a href="./about.html" class="block px-3 py-2 rounded transition-colors ${isAbout ? 'text-violet-400 bg-violet-950/50' : 'text-gray-400 hover:text-violet-400'}">/about</a>
         <a href="./repos.html" class="block px-3 py-2 rounded transition-colors ${isRepos ? 'text-violet-400 bg-violet-950/50' : 'text-gray-400 hover:text-violet-400'}">/repos</a>
-        <a href="/kubernetes-documentation/" class="block px-3 py-2 rounded transition-colors text-gray-400 hover:text-violet-400">/docs</a>
+        <a href="./docs.html" class="block px-3 py-2 rounded transition-colors ${isDocs ? 'text-violet-400 bg-violet-950/50' : 'text-gray-400 hover:text-violet-400'}">/docs</a>
       </div>
     </div>
   </div>
@@ -36,7 +37,7 @@ function loadNavbar() {
     <a href="./" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">/home</a>
     <a href="./about.html" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">/about</a>
     <a href="./repos.html" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">/repos</a>
-    <a href="/kubernetes-documentation/" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">/docs</a>
+    <a href="./docs.html" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">/docs</a>
   </div>
 </nav>`;
 
@@ -69,7 +70,7 @@ function loadFooter() {
       <div>
         <h5 class="font-mono font-bold text-violet-400 mb-3">docs</h5>
         <ul class="space-y-1 text-sm font-mono">
-          <li><a href="/kubernetes-documentation/" class="text-gray-500 hover:text-violet-400 transition-colors">kubernetes</a></li>
+          <li><a href="./docs.html" class="text-gray-500 hover:text-violet-400 transition-colors">kubernetes</a></li>
         </ul>
       </div>
     </div>
