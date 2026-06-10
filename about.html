@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>/about — fahadh</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-300 font-sans antialiased flex flex-col min-h-screen">
+
+  <div id="navbar-placeholder"></div>
+
+  <main class="flex-1 max-w-3xl mx-auto px-4 py-16 w-full">
+
+    <h1 class="font-mono text-emerald-400 text-2xl mb-8">&gt; cat /about/me.md</h1>
+
+    <!-- Bio card -->
+    <div class="border border-gray-800 rounded-lg overflow-hidden bg-gray-900/50 mb-10">
+      <div class="flex items-center gap-2 px-4 py-2 bg-gray-800/50 border-b border-gray-800">
+        <span class="text-xs text-gray-500 font-mono">me.md</span>
+      </div>
+      <div class="p-6">
+        <div class="flex flex-col sm:flex-row gap-6 items-start">
+          <img src="assets/images/fahadh.jpg" alt="my picture" class="w-24 h-24 sm:w-32 sm:h-32 rounded-lg border border-gray-700 object-cover flex-shrink-0">
+          <div class="flex-1">
+            <button onclick="toggleCollapse('about-intro')" class="font-mono text-sm px-5 py-2 border border-emerald-700 text-emerald-400 rounded hover:bg-emerald-950/50 hover:border-emerald-500 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30" aria-expanded="false">
+              $ ./intro.sh
+            </button>
+            <div id="about-intro" class="hidden mt-4 space-y-2 text-gray-400">
+              <p>My name is <span class="text-gray-300 font-semibold">Ahmad Fahadh Ilyas</span>. I go by <span class="text-emerald-400">Fahadh</span>.</p>
+              <p>Born in Jakarta, April 19th.</p>
+              <p>Graduated from <span class="text-gray-300">Universitas Indonesia</span>, majoring in Mathematics.</p>
+              <p>Working as a <span class="text-emerald-400 font-mono text-sm">programmer</span> at a private company since 2018.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <h2 class="font-mono text-emerald-400 text-lg mb-4">&gt; cat /about/contact.json</h2>
+
+    <button id="toggle-all-btn" class="font-mono text-sm px-5 py-2 border border-emerald-700 text-emerald-400 rounded hover:bg-emerald-950/50 hover:border-emerald-500 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30 mb-6">
+      $ jq '.' contact.json
+    </button>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- Email -->
+      <div>
+        <button onclick="toggleCollapse('contact-email')" class="w-full font-mono text-sm px-4 py-3 border border-gray-800 text-gray-400 rounded hover:border-emerald-700 hover:text-emerald-400 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30 text-left" aria-expanded="false">
+          <span class="text-emerald-500">"email"</span>: <span class="text-gray-600">[hidden]</span>
+        </button>
+        <div id="contact-email" class="hidden mt-2">
+          <div class="border border-gray-800 rounded p-4 bg-gray-900/50 font-mono text-sm">
+            <span class="text-emerald-500">"email"</span>: <span class="text-gray-300">"fahadhilyas4@gmail.com"</span>
+          </div>
+        </div>
+      </div>
+      <!-- GitHub -->
+      <div>
+        <button onclick="toggleCollapse('contact-github')" class="w-full font-mono text-sm px-4 py-3 border border-gray-800 text-gray-400 rounded hover:border-emerald-700 hover:text-emerald-400 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30 text-left" aria-expanded="false">
+          <span class="text-emerald-500">"github"</span>: <span class="text-gray-600">[hidden]</span>
+        </button>
+        <div id="contact-github" class="hidden mt-2">
+          <div class="border border-gray-800 rounded p-4 bg-gray-900/50 font-mono text-sm">
+            <span class="text-emerald-500">"github"</span>: <span class="text-gray-300">"</span><a href="https://github.com/fahadh4ilyas" class="text-emerald-400 hover:underline" target="_blank" rel="noopener">fahadh4ilyas</a><span class="text-gray-300">"</span>
+          </div>
+        </div>
+      </div>
+      <!-- Telegram -->
+      <div>
+        <button onclick="toggleCollapse('contact-telegram')" class="w-full font-mono text-sm px-4 py-3 border border-gray-800 text-gray-400 rounded hover:border-emerald-700 hover:text-emerald-400 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30 text-left" aria-expanded="false">
+          <span class="text-emerald-500">"telegram"</span>: <span class="text-gray-600">[hidden]</span>
+        </button>
+        <div id="contact-telegram" class="hidden mt-2">
+          <div class="border border-gray-800 rounded p-4 bg-gray-900/50 font-mono text-sm">
+            <span class="text-emerald-500">"telegram"</span>: <span class="text-gray-300">"</span><a href="https://t.me/fahadh4ilyas" class="text-emerald-400 hover:underline" target="_blank" rel="noopener">fahadh4ilyas</a><span class="text-gray-300">"</span>
+          </div>
+        </div>
+      </div>
+      <!-- Twitter -->
+      <div>
+        <button onclick="toggleCollapse('contact-twitter')" class="w-full font-mono text-sm px-4 py-3 border border-gray-800 text-gray-400 rounded hover:border-emerald-700 hover:text-emerald-400 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30 text-left" aria-expanded="false">
+          <span class="text-emerald-500">"twitter"</span>: <span class="text-gray-600">[hidden]</span>
+        </button>
+        <div id="contact-twitter" class="hidden mt-2">
+          <div class="border border-gray-800 rounded p-4 bg-gray-900/50 font-mono text-sm">
+            <span class="text-emerald-500">"twitter"</span>: <span class="text-gray-300">"</span><a href="https://twitter.com/0tothepowerof0" class="text-emerald-400 hover:underline" target="_blank" rel="noopener">0tothepowerof0</a><span class="text-gray-300">"</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/components.js"></script>
+  <script>
+    function toggleCollapse(id) {
+      const el = document.getElementById(id);
+      const btn = el.previousElementSibling;
+      const isHidden = el.classList.contains('hidden');
+      el.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(isHidden));
+      updateToggleAllBtn();
+    }
+
+    function updateToggleAllBtn() {
+      const contacts = ['contact-email', 'contact-github', 'contact-telegram', 'contact-twitter'];
+      const allVisible = contacts.every(id => !document.getElementById(id).classList.contains('hidden'));
+      document.getElementById('toggle-all-btn').textContent = allVisible
+        ? "$ jq -c '.' contact.json"
+        : "$ jq '.' contact.json";
+    }
+
+    document.getElementById('toggle-all-btn').addEventListener('click', () => {
+      const contacts = ['contact-email', 'contact-github', 'contact-telegram', 'contact-twitter'];
+      const anyHidden = contacts.some(id => document.getElementById(id).classList.contains('hidden'));
+      contacts.forEach(id => {
+        const el = document.getElementById(id);
+        const btn = el.previousElementSibling;
+        if (anyHidden) {
+          el.classList.remove('hidden');
+          btn.setAttribute('aria-expanded', 'true');
+        } else {
+          el.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+      updateToggleAllBtn();
+    });
+  </script>
+</body>
+</html>
