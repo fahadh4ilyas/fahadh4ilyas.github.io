@@ -21,6 +21,11 @@
       }
     }
   </script>
+  <style>
+    .scrollbar-thin::-webkit-scrollbar { height: 4px; }
+    .scrollbar-thin::-webkit-scrollbar-thumb { background: #374151; border-radius: 2px; }
+    .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  </style>
 </head>
 <body class="bg-gray-950 text-gray-300 font-sans antialiased flex flex-col min-h-screen">
 
@@ -78,6 +83,40 @@
             </svg>
           </a>
         </div>
+      </div>
+    </section>
+
+    <!-- Repos carousel -->
+    <section class="mt-12">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="font-mono text-violet-400 text-lg">&gt; ls ./repos/</h2>
+        <a href="./repos.html" class="text-xs font-mono text-gray-600 hover:text-violet-400 transition-colors">view all →</a>
+      </div>
+      <div class="relative">
+        <button id="scroll-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400 hover:text-violet-400 hover:border-violet-700 transition-all flex items-center justify-center -ml-3 hidden sm:flex" aria-label="Scroll left">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <div id="repo-carousel" class="flex gap-3 overflow-x-auto scroll-smooth pb-2 scrollbar-thin">
+          <!-- Loading skeletons -->
+          <div class="flex-shrink-0 w-64 border border-gray-800 rounded-lg p-4 bg-gray-900/30 animate-pulse">
+            <div class="h-4 bg-gray-800 rounded w-20 mb-2"></div>
+            <div class="h-3 bg-gray-800 rounded w-full mb-1"></div>
+            <div class="h-3 bg-gray-800 rounded w-24"></div>
+          </div>
+          <div class="flex-shrink-0 w-64 border border-gray-800 rounded-lg p-4 bg-gray-900/30 animate-pulse">
+            <div class="h-4 bg-gray-800 rounded w-16 mb-2"></div>
+            <div class="h-3 bg-gray-800 rounded w-full mb-1"></div>
+            <div class="h-3 bg-gray-800 rounded w-20"></div>
+          </div>
+          <div class="flex-shrink-0 w-64 border border-gray-800 rounded-lg p-4 bg-gray-900/30 animate-pulse">
+            <div class="h-4 bg-gray-800 rounded w-28 mb-2"></div>
+            <div class="h-3 bg-gray-800 rounded w-full mb-1"></div>
+            <div class="h-3 bg-gray-800 rounded w-16"></div>
+          </div>
+        </div>
+        <button id="scroll-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400 hover:text-violet-400 hover:border-violet-700 transition-all flex items-center justify-center -mr-3 hidden sm:flex" aria-label="Scroll right">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
       </div>
     </section>
 
@@ -145,6 +184,40 @@
       btn.textContent = collapsed ? '$ cat index' : '$ hide index';
       btn.setAttribute('aria-expanded', String(!collapsed));
     });
+
+    // Repos carousel
+    async function loadRepos() {
+      const carousel = document.getElementById('repo-carousel');
+      try {
+        const resp = await fetch('https://api.github.com/users/fahadh4ilyas/repos?sort=updated&per_page=12');
+        if (!resp.ok) throw new Error('API error');
+        const repos = await resp.json();
+        if (!repos.length) return;
+
+        carousel.innerHTML = repos.map(repo => `
+          <a href="${repo.html_url}" target="_blank" rel="noopener" class="flex-shrink-0 w-64 border border-gray-800 rounded-lg p-4 bg-gray-900/30 hover:border-violet-700 hover:bg-gray-900/50 transition-all group">
+            <h3 class="font-mono text-violet-400 group-hover:text-violet-300 transition-colors text-sm truncate">${repo.name}</h3>
+            <p class="text-gray-500 text-xs mt-1.5 line-clamp-2 leading-relaxed">${repo.description || '<span class="italic text-gray-600">no description</span>'}</p>
+            <div class="flex items-center gap-2 mt-3 text-xs text-gray-600 font-mono">
+              ${repo.language ? `<span class="px-1.5 py-0.5 rounded border border-gray-700 text-gray-500">${repo.language}</span>` : ''}
+              ${repo.stargazers_count > 0 ? `<span>⭐ ${repo.stargazers_count}</span>` : ''}
+            </div>
+          </a>
+        `).join('');
+      } catch (e) {
+        carousel.innerHTML = '<p class="text-gray-600 text-xs font-mono">could not fetch repos</p>';
+      }
+    }
+
+    // Carousel scroll buttons
+    document.getElementById('scroll-left').addEventListener('click', () => {
+      document.getElementById('repo-carousel').scrollBy({ left: -300, behavior: 'smooth' });
+    });
+    document.getElementById('scroll-right').addEventListener('click', () => {
+      document.getElementById('repo-carousel').scrollBy({ left: 300, behavior: 'smooth' });
+    });
+
+    setTimeout(loadRepos, 1200);
   </script>
 </body>
 </html>
