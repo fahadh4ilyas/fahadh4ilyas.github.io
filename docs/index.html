@@ -56,33 +56,36 @@
     <!-- About card -->
     <section class="mb-12">
       <div class="border border-gray-800 rounded-lg p-6 bg-gray-900/50">
-        <h2 class="font-mono text-violet-400 text-lg mb-4">&gt; about_this_site</h2>
-        <p class="mb-2 text-gray-400">This website contains documentation I created for myself — rewritten from official sources so they're easier to digest.</p>
-        <p class="text-gray-400">Think of it as my personal <span class="text-violet-400 font-mono text-sm">/usr/share/doc</span> — publicly available, free to use.</p>
+        <h2 class="font-mono text-violet-400 text-lg mb-4">&gt; cat /etc/motd</h2>
+        <p class="mb-2 text-gray-400">AI/ML Engineer and Back End Developer based in Jakarta. Working with LLMs, transformers, and speech synthesis — I contribute to open-source projects around model inference, quantization, and efficient fine-tuning.</p>
+        <p class="text-gray-400">This site is my <span class="text-violet-400 font-mono text-sm">~/public</span> — docs, repos, and notes. Free to browse.</p>
       </div>
     </section>
 
-    <!-- Docs list -->
-    <section>
-      <h2 class="font-mono text-violet-400 text-lg mb-4">&gt; ls ./docs/</h2>
-
-      <button id="toggle-docs-btn" class="font-mono text-sm px-5 py-2 border border-violet-700 text-violet-400 rounded hover:bg-violet-950/50 hover:border-violet-500 transition-all focus:outline-none focus:ring-2 focus:ring-violet-500/30 mb-4">
-        $ cat index
-      </button>
-
-      <div id="docs-list" class="hidden">
-        <div class="border border-gray-800 rounded-lg overflow-hidden bg-gray-900/30">
-          <a href="./docs.html" class="flex items-center gap-3 px-5 py-4 hover:bg-gray-800/50 transition-colors group border-b border-gray-800 last:border-b-0">
-            <span class="font-mono text-violet-500 text-sm">.md</span>
-            <div>
-              <span class="text-gray-300 group-hover:text-violet-400 transition-colors">Kubernetes Documentation</span>
-              <span class="block text-xs text-gray-600 font-mono mt-0.5">/kubernetes-documentation</span>
+    <!-- Docs carousel -->
+    <section class="mb-12">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="font-mono text-violet-400 text-lg">&gt; ls ./docs/</h2>
+        <a href="./docs.html" class="text-xs font-mono text-gray-600 hover:text-violet-400 transition-colors">view all →</a>
+      </div>
+      <div class="relative">
+        <button id="scroll-docs-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400 hover:text-violet-400 hover:border-violet-700 transition-all flex items-center justify-center -ml-3" aria-label="Scroll left">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <div id="docs-carousel" class="flex gap-3 overflow-x-auto scroll-smooth pb-2 scrollbar-thin">
+          <a href="/kubernetes-documentation/" class="flex-shrink-0 w-72 border border-gray-800 rounded-lg p-4 bg-gray-900/30 hover:border-violet-700 hover:bg-gray-900/50 transition-all group">
+            <span class="font-mono text-violet-500 text-xs">.md</span>
+            <h3 class="font-mono text-violet-400 group-hover:text-violet-300 transition-colors text-sm mt-2">Kubernetes Documentation</h3>
+            <p class="text-gray-500 text-xs mt-1.5 leading-relaxed">Comprehensive K8s guide in Bahasa Indonesia — from setup to advanced concepts like Storage, Access Control, and Pods Controllers.</p>
+            <div class="flex items-center gap-2 mt-3 text-xs text-gray-600 font-mono">
+              <span class="px-1.5 py-0.5 rounded border border-gray-700 text-gray-500">20 pages</span>
+              <span>kubernetes</span>
             </div>
-            <svg class="w-4 h-4 text-gray-700 group-hover:text-violet-500 ml-auto transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
           </a>
         </div>
+        <button id="scroll-docs-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400 hover:text-violet-400 hover:border-violet-700 transition-all flex items-center justify-center -mr-3" aria-label="Scroll right">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
       </div>
     </section>
 
@@ -173,16 +176,12 @@
 
     setTimeout(type, 500);
 
-    // Docs toggle
-    const btn = document.getElementById('toggle-docs-btn');
-    const list = document.getElementById('docs-list');
-    let collapsed = true;
-
-    btn.addEventListener('click', () => {
-      collapsed = !collapsed;
-      list.classList.toggle('hidden', collapsed);
-      btn.textContent = collapsed ? '$ cat index' : '$ hide index';
-      btn.setAttribute('aria-expanded', String(!collapsed));
+    // Docs carousel scroll buttons
+    document.getElementById('scroll-docs-left').addEventListener('click', () => {
+      document.getElementById('docs-carousel').scrollBy({ left: -300, behavior: 'smooth' });
+    });
+    document.getElementById('scroll-docs-right').addEventListener('click', () => {
+      document.getElementById('docs-carousel').scrollBy({ left: 300, behavior: 'smooth' });
     });
 
     // Repos carousel
