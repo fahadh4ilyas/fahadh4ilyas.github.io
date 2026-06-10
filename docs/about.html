@@ -28,7 +28,7 @@
 
   <main class="flex-1 max-w-3xl mx-auto px-4 py-16 w-full">
 
-    <h1 class="font-mono text-emerald-400 text-2xl mb-8">&gt; cat /about/me.md</h1>
+    <h1 class="font-mono text-violet-400 text-2xl mb-8">&gt; cat /about/me.md</h1>
 
     <!-- Bio card -->
     <div class="border border-gray-800 rounded-lg overflow-hidden bg-gray-900/50 mb-10">
@@ -39,14 +39,14 @@
         <div class="flex flex-col sm:flex-row gap-6 items-start">
           <img src="assets/images/fahadh.jpg" alt="my picture" class="w-24 h-24 sm:w-32 sm:h-32 rounded-lg border border-gray-700 object-cover flex-shrink-0">
           <div class="flex-1">
-            <button onclick="toggleCollapse('about-intro')" class="font-mono text-sm px-5 py-2 border border-emerald-700 text-emerald-400 rounded hover:bg-emerald-950/50 hover:border-emerald-500 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30" aria-expanded="false">
+            <button onclick="toggleCollapse('about-intro')" class="font-mono text-sm px-5 py-2 border border-violet-700 text-violet-400 rounded hover:bg-violet-950/50 hover:border-violet-500 transition-all focus:outline-none focus:ring-2 focus:ring-violet-500/30" aria-expanded="false">
               $ ./intro.sh
             </button>
             <div id="about-intro" class="hidden mt-4 space-y-2 text-gray-400">
-              <p>My name is <span class="text-gray-300 font-semibold">Ahmad Fahadh Ilyas</span>. I go by <span class="text-emerald-400">Fahadh</span>.</p>
+              <p>My name is <span class="text-gray-300 font-semibold">Ahmad Fahadh Ilyas</span>. I go by <span class="text-violet-400">Fahadh</span>.</p>
               <p>Born in Jakarta, April 19th.</p>
               <p>Graduated from <span class="text-gray-300">Universitas Indonesia</span>, majoring in Mathematics.</p>
-              <p>Working as a <span class="text-emerald-400 font-mono text-sm">programmer</span> at a private company since 2018.</p>
+              <p>Working as a <span class="text-violet-400 font-mono text-sm">programmer</span> at a private company since 2018.</p>
             </div>
           </div>
         </div>
@@ -54,54 +54,54 @@
     </div>
 
     <!-- Contact -->
-    <h2 class="font-mono text-emerald-400 text-lg mb-4">&gt; cat /about/contact.json</h2>
+    <h2 class="font-mono text-violet-400 text-lg mb-4">&gt; cat /about/contact.json</h2>
 
-    <button id="toggle-all-btn" class="font-mono text-sm px-5 py-2 border border-emerald-700 text-emerald-400 rounded hover:bg-emerald-950/50 hover:border-emerald-500 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30 mb-6">
+    <button id="toggle-all-btn" class="font-mono text-sm px-5 py-2 border border-violet-700 text-violet-400 rounded hover:bg-violet-950/50 hover:border-violet-500 transition-all focus:outline-none focus:ring-2 focus:ring-violet-500/30 mb-6">
       $ jq '.' contact.json
     </button>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <!-- Email -->
       <div>
-        <button onclick="toggleCollapse('contact-email')" class="w-full font-mono text-sm px-4 py-3 border border-gray-800 text-gray-400 rounded hover:border-emerald-700 hover:text-emerald-400 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30 text-left" aria-expanded="false">
-          <span class="text-emerald-500">"email"</span>: <span class="text-gray-600">[hidden]</span>
+        <button onclick="toggleCollapse('contact-email')" class="w-full font-mono text-sm px-4 py-3 border border-gray-800 text-gray-400 rounded hover:border-violet-700 hover:text-violet-400 transition-all focus:outline-none focus:ring-2 focus:ring-violet-500/30 text-left" aria-expanded="false">
+          <span class="text-violet-500">"email"</span>: <span class="text-gray-600">[hidden]</span>
         </button>
         <div id="contact-email" class="hidden mt-2">
           <div class="border border-gray-800 rounded p-4 bg-gray-900/50 font-mono text-sm">
-            <span class="text-emerald-500">"email"</span>: <span class="text-gray-300">"fahadhilyas4@gmail.com"</span>
+            <span class="text-violet-500">"email"</span>: <span class="text-gray-300">"fahadhilyas4@gmail.com"</span>
           </div>
         </div>
       </div>
       <!-- GitHub -->
       <div>
-        <button onclick="toggleCollapse('contact-github')" class="w-full font-mono text-sm px-4 py-3 border border-gray-800 text-gray-400 rounded hover:border-emerald-700 hover:text-emerald-400 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30 text-left" aria-expanded="false">
-          <span class="text-emerald-500">"github"</span>: <span class="text-gray-600">[hidden]</span>
+        <button onclick="toggleCollapse('contact-github')" class="w-full font-mono text-sm px-4 py-3 border border-gray-800 text-gray-400 rounded hover:border-violet-700 hover:text-violet-400 transition-all focus:outline-none focus:ring-2 focus:ring-violet-500/30 text-left" aria-expanded="false">
+          <span class="text-violet-500">"github"</span>: <span class="text-gray-600">[hidden]</span>
         </button>
         <div id="contact-github" class="hidden mt-2">
           <div class="border border-gray-800 rounded p-4 bg-gray-900/50 font-mono text-sm">
-            <span class="text-emerald-500">"github"</span>: <span class="text-gray-300">"</span><a href="https://github.com/fahadh4ilyas" class="text-emerald-400 hover:underline" target="_blank" rel="noopener">fahadh4ilyas</a><span class="text-gray-300">"</span>
+            <span class="text-violet-500">"github"</span>: <span class="text-gray-300">"</span><a href="https://github.com/fahadh4ilyas" class="text-violet-400 hover:underline" target="_blank" rel="noopener">fahadh4ilyas</a><span class="text-gray-300">"</span>
           </div>
         </div>
       </div>
       <!-- Telegram -->
       <div>
-        <button onclick="toggleCollapse('contact-telegram')" class="w-full font-mono text-sm px-4 py-3 border border-gray-800 text-gray-400 rounded hover:border-emerald-700 hover:text-emerald-400 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30 text-left" aria-expanded="false">
-          <span class="text-emerald-500">"telegram"</span>: <span class="text-gray-600">[hidden]</span>
+        <button onclick="toggleCollapse('contact-telegram')" class="w-full font-mono text-sm px-4 py-3 border border-gray-800 text-gray-400 rounded hover:border-violet-700 hover:text-violet-400 transition-all focus:outline-none focus:ring-2 focus:ring-violet-500/30 text-left" aria-expanded="false">
+          <span class="text-violet-500">"telegram"</span>: <span class="text-gray-600">[hidden]</span>
         </button>
         <div id="contact-telegram" class="hidden mt-2">
           <div class="border border-gray-800 rounded p-4 bg-gray-900/50 font-mono text-sm">
-            <span class="text-emerald-500">"telegram"</span>: <span class="text-gray-300">"</span><a href="https://t.me/fahadh4ilyas" class="text-emerald-400 hover:underline" target="_blank" rel="noopener">fahadh4ilyas</a><span class="text-gray-300">"</span>
+            <span class="text-violet-500">"telegram"</span>: <span class="text-gray-300">"</span><a href="https://t.me/fahadh4ilyas" class="text-violet-400 hover:underline" target="_blank" rel="noopener">fahadh4ilyas</a><span class="text-gray-300">"</span>
           </div>
         </div>
       </div>
       <!-- Twitter -->
       <div>
-        <button onclick="toggleCollapse('contact-twitter')" class="w-full font-mono text-sm px-4 py-3 border border-gray-800 text-gray-400 rounded hover:border-emerald-700 hover:text-emerald-400 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/30 text-left" aria-expanded="false">
-          <span class="text-emerald-500">"twitter"</span>: <span class="text-gray-600">[hidden]</span>
+        <button onclick="toggleCollapse('contact-twitter')" class="w-full font-mono text-sm px-4 py-3 border border-gray-800 text-gray-400 rounded hover:border-violet-700 hover:text-violet-400 transition-all focus:outline-none focus:ring-2 focus:ring-violet-500/30 text-left" aria-expanded="false">
+          <span class="text-violet-500">"twitter"</span>: <span class="text-gray-600">[hidden]</span>
         </button>
         <div id="contact-twitter" class="hidden mt-2">
           <div class="border border-gray-800 rounded p-4 bg-gray-900/50 font-mono text-sm">
-            <span class="text-emerald-500">"twitter"</span>: <span class="text-gray-300">"</span><a href="https://twitter.com/0tothepowerof0" class="text-emerald-400 hover:underline" target="_blank" rel="noopener">0tothepowerof0</a><span class="text-gray-300">"</span>
+            <span class="text-violet-500">"twitter"</span>: <span class="text-gray-300">"</span><a href="https://twitter.com/0tothepowerof0" class="text-violet-400 hover:underline" target="_blank" rel="noopener">0tothepowerof0</a><span class="text-gray-300">"</span>
           </div>
         </div>
       </div>
