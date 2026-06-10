@@ -28,17 +28,7 @@ function loadNavbar() {
         <a href="./" class="block px-3 py-2 rounded transition-colors ${isHome ? 'text-violet-400 bg-violet-950/50' : 'text-gray-400 hover:text-violet-400'}">/home</a>
         <a href="./about.html" class="block px-3 py-2 rounded transition-colors ${isAbout ? 'text-violet-400 bg-violet-950/50' : 'text-gray-400 hover:text-violet-400'}">/about</a>
         <a href="./repos.html" class="block px-3 py-2 rounded transition-colors ${isRepos ? 'text-violet-400 bg-violet-950/50' : 'text-gray-400 hover:text-violet-400'}">/repos</a>
-        <div class="relative group">
-          <button class="flex items-center gap-1 px-3 py-2 rounded text-gray-400 hover:text-violet-400 transition-colors">
-            /docs
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="absolute right-0 mt-1 w-64 bg-gray-900 border border-gray-800 rounded shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
-            <a href="/kubernetes-documentation/" class="block px-4 py-2 text-gray-400 hover:text-violet-400 hover:bg-gray-800 transition-colors font-mono text-sm">kubernetes-docs</a>
-          </div>
-        </div>
+        <a href="/kubernetes-documentation/" class="block px-3 py-2 rounded transition-colors text-gray-400 hover:text-violet-400">/docs</a>
       </div>
     </div>
   </div>
@@ -46,12 +36,7 @@ function loadNavbar() {
     <a href="./" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">/home</a>
     <a href="./about.html" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">/about</a>
     <a href="./repos.html" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">/repos</a>
-    <details class="group">
-      <summary class="px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors cursor-pointer list-none">/docs ▾</summary>
-      <div class="pl-6 pb-1">
-        <a href="/kubernetes-documentation/" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">kubernetes-docs</a>
-      </div>
-    </details>
+    <a href="/kubernetes-documentation/" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">/docs</a>
   </div>
 </nav>`;
 
