@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>/repos — fahadh</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-300 font-sans antialiased flex flex-col min-h-screen">
+
+  <div id="navbar-placeholder"></div>
+
+  <main class="flex-1 max-w-3xl mx-auto px-4 py-16 w-full">
+    <h1 class="font-mono text-emerald-400 text-2xl mb-2">&gt; cat /github/repos.json</h1>
+    <p class="text-gray-500 text-sm font-mono mb-8">fetching from api.github.com/users/fahadh4ilyas/repos...</p>
+
+    <div id="repo-list" class="space-y-4">
+      <!-- Loading skeletons -->
+      <div class="border border-gray-800 rounded-lg p-6 bg-gray-900/30 animate-pulse">
+        <div class="h-5 bg-gray-800 rounded w-48 mb-2"></div>
+        <div class="h-4 bg-gray-800 rounded w-96 mb-3"></div>
+        <div class="h-3 bg-gray-800 rounded w-24"></div>
+      </div>
+      <div class="border border-gray-800 rounded-lg p-6 bg-gray-900/30 animate-pulse">
+        <div class="h-5 bg-gray-800 rounded w-36 mb-2"></div>
+        <div class="h-4 bg-gray-800 rounded w-80 mb-3"></div>
+        <div class="h-3 bg-gray-800 rounded w-20"></div>
+      </div>
+    </div>
+
+    <div id="error-msg" class="hidden border border-red-900/50 rounded-lg p-6 bg-red-950/20 text-red-400 font-mono text-sm">
+      Failed to fetch repositories. <button onclick="location.reload()" class="text-red-300 underline hover:text-red-200">Retry</button>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/components.js"></script>
+  <script>
+    async function fetchRepos() {
+      const container = document.getElementById('repo-list');
+      const errorEl = document.getElementById('error-msg');
+
+      try {
+        const resp = await fetch('https://api.github.com/users/fahadh4ilyas/repos?sort=updated&per_page=30');
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const repos = await resp.json();
+
+        if (!repos.length) {
+          container.innerHTML = '<p class="text-gray-500 font-mono text-sm">No public repositories found.</p>';
+          return;
+        }
+
+        container.innerHTML = repos.map(repo => `
+          <a href="${repo.html_url}" target="_blank" rel="noopener" class="block border border-gray-800 rounded-lg p-5 bg-gray-900/30 hover:border-emerald-700 hover:bg-gray-900/50 transition-all group">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex-1 min-w-0">
+                <h3 class="font-mono text-emerald-400 group-hover:text-emerald-300 transition-colors text-base truncate">
+                  ${repo.name}
+                </h3>
+                <p class="text-gray-500 text-sm mt-1 line-clamp-2">${repo.description || '<span class="italic text-gray-600">no description</span>'}</p>
+              </div>
+              <div class="flex items-center gap-3 flex-shrink-0">
+                ${repo.language ? `<span class="text-xs font-mono px-2 py-0.5 rounded-full border border-gray-700 text-gray-400">${repo.language}</span>` : ''}
+                <svg class="w-4 h-4 text-gray-700 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 mt-3 text-xs text-gray-600 font-mono">
+              ${repo.stargazers_count > 0 ? `<span>⭐ ${repo.stargazers_count}</span>` : ''}
+              ${repo.fork ? '<span>🍴 fork</span>' : ''}
+              <span>updated ${timeAgo(repo.updated_at)}</span>
+            </div>
+          </a>
+        `).join('');
+
+      } catch (e) {
+        container.classList.add('hidden');
+        errorEl.classList.remove('hidden');
+        console.error('GitHub API error:', e);
+      }
+    }
+
+    function timeAgo(dateStr) {
+      const now = new Date();
+      const then = new Date(dateStr);
+      const diff = Math.floor((now - then) / 1000);
+      if (diff < 60) return 'just now';
+      if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+      if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+      if (diff < 604800) return `${Math.floor(diff / 86400)}d ago`;
+      return then.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchRepos);
+  </script>
+</body>
+</html>

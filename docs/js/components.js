@@ -10,6 +10,7 @@ function loadNavbar() {
   const currentPath = window.location.pathname;
   const isHome = currentPath.endsWith('/') || currentPath.endsWith('/index.html');
   const isAbout = currentPath.endsWith('/about.html');
+  const isRepos = currentPath.endsWith('/repos.html');
 
   navbar.innerHTML = `
 <nav class="bg-gray-950 border-b border-emerald-900/50 sticky top-0 z-50">
@@ -26,6 +27,7 @@ function loadNavbar() {
       <div id="navbar-menu" class="hidden md:flex md:items-center md:gap-1 font-mono text-sm">
         <a href="./" class="block px-3 py-2 rounded transition-colors ${isHome ? 'text-emerald-400 bg-emerald-950/50' : 'text-gray-400 hover:text-emerald-400'}">/home</a>
         <a href="./about.html" class="block px-3 py-2 rounded transition-colors ${isAbout ? 'text-emerald-400 bg-emerald-950/50' : 'text-gray-400 hover:text-emerald-400'}">/about</a>
+        <a href="./repos.html" class="block px-3 py-2 rounded transition-colors ${isRepos ? 'text-emerald-400 bg-emerald-950/50' : 'text-gray-400 hover:text-emerald-400'}">/repos</a>
         <div class="relative group">
           <button class="flex items-center gap-1 px-3 py-2 rounded text-gray-400 hover:text-emerald-400 transition-colors">
             /docs
@@ -43,6 +45,7 @@ function loadNavbar() {
   <div id="navbar-mobile" class="hidden md:hidden border-t border-gray-800 font-mono text-sm">
     <a href="./" class="block px-4 py-2 text-gray-400 hover:text-emerald-400 transition-colors">/home</a>
     <a href="./about.html" class="block px-4 py-2 text-gray-400 hover:text-emerald-400 transition-colors">/about</a>
+    <a href="./repos.html" class="block px-4 py-2 text-gray-400 hover:text-emerald-400 transition-colors">/repos</a>
     <details class="group">
       <summary class="px-4 py-2 text-gray-400 hover:text-emerald-400 transition-colors cursor-pointer list-none">/docs ▾</summary>
       <div class="pl-6 pb-1">
@@ -75,6 +78,7 @@ function loadFooter() {
         <ul class="space-y-1 text-sm font-mono">
           <li><a href="./" class="text-gray-500 hover:text-emerald-400 transition-colors">/home</a></li>
           <li><a href="./about.html" class="text-gray-500 hover:text-emerald-400 transition-colors">/about</a></li>
+          <li><a href="./repos.html" class="text-gray-500 hover:text-emerald-400 transition-colors">/repos</a></li>
         </ul>
       </div>
       <div>
