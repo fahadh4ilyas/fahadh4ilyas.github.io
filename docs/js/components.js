@@ -18,7 +18,7 @@ function loadNavbar() {
   <div class="max-w-4xl mx-auto px-4">
     <div class="flex items-center justify-between h-14">
       <a href="./" class="flex items-center gap-2 font-mono font-bold text-violet-400 hover:text-violet-300 transition-colors">
-        <span class="text-violet-500">~/</span>fahadh
+        ~/fahadh
       </a>
       <div class="flex items-center gap-1">
         <div id="navbar-menu" class="hidden md:flex md:items-center md:gap-1 font-mono text-sm">
@@ -54,6 +54,9 @@ function loadNavbar() {
   document.getElementById('navbar-toggler').addEventListener('click', () => {
     document.getElementById('navbar-mobile').classList.toggle('hidden');
   });
+
+  // Sync theme icons — theme.js may have run before navbar was in DOM
+  if (window.syncThemeIcons) window.syncThemeIcons();
 }
 
 function loadFooter() {
