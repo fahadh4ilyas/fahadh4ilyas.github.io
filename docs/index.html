@@ -119,7 +119,7 @@
         <a href="./docs.html" class="text-xs font-mono text-gray-600 hover:text-violet-400 transition-colors">view all →</a>
       </div>
       <div class="relative">
-        <button id="scroll-docs-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400 hover:text-violet-400 hover:border-violet-700 transition-all flex items-center justify-center -ml-3" aria-label="Scroll left">
+        <button id="scroll-docs-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400 hover:text-violet-400 hover:border-violet-700 transition-all items-center justify-center -ml-3 hidden sm:flex" aria-label="Scroll left">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
         </button>
         <div id="docs-carousel" class="flex gap-3 overflow-x-auto scroll-smooth pb-2 scrollbar-thin">
@@ -133,7 +133,7 @@
             </div>
           </a>
         </div>
-        <button id="scroll-docs-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400 hover:text-violet-400 hover:border-violet-700 transition-all flex items-center justify-center -mr-3" aria-label="Scroll right">
+        <button id="scroll-docs-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400 hover:text-violet-400 hover:border-violet-700 transition-all items-center justify-center -mr-3 hidden sm:flex" aria-label="Scroll right">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </button>
       </div>
@@ -146,7 +146,7 @@
         <a href="./repos.html" class="text-xs font-mono text-gray-600 hover:text-violet-400 transition-colors">view all →</a>
       </div>
       <div class="relative">
-        <button id="scroll-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400 hover:text-violet-400 hover:border-violet-700 transition-all flex items-center justify-center -ml-3 hidden sm:flex" aria-label="Scroll left">
+        <button id="scroll-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400 hover:text-violet-400 hover:border-violet-700 transition-all items-center justify-center -ml-3 hidden sm:flex" aria-label="Scroll left">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
         </button>
         <div id="repo-carousel" class="flex gap-3 overflow-x-auto scroll-smooth pb-2 scrollbar-thin">
@@ -167,7 +167,7 @@
             <div class="h-3 bg-gray-800 rounded w-16"></div>
           </div>
         </div>
-        <button id="scroll-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400 hover:text-violet-400 hover:border-violet-700 transition-all flex items-center justify-center -mr-3 hidden sm:flex" aria-label="Scroll right">
+        <button id="scroll-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-gray-800/80 border border-gray-700 text-gray-400 hover:text-violet-400 hover:border-violet-700 transition-all items-center justify-center -mr-3 hidden sm:flex" aria-label="Scroll right">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </button>
       </div>
@@ -227,13 +227,24 @@
 
     setTimeout(type, 500);
 
-    // Docs carousel scroll buttons
-    document.getElementById('scroll-docs-left').addEventListener('click', () => {
-      document.getElementById('docs-carousel').scrollBy({ left: -300, behavior: 'smooth' });
-    });
-    document.getElementById('scroll-docs-right').addEventListener('click', () => {
-      document.getElementById('docs-carousel').scrollBy({ left: 300, behavior: 'smooth' });
-    });
+    // Carousel scroll buttons (desktop only, shown when scrollable)
+    function updateScrollButtons(carouselId, btnLeftId, btnRightId) {
+      const carousel = document.getElementById(carouselId);
+      const btnL = document.getElementById(btnLeftId);
+      const btnR = document.getElementById(btnRightId);
+      if (!carousel || !btnL || !btnR) return;
+      const scrollable = carousel.scrollWidth > carousel.clientWidth + 2;
+      btnL.classList.toggle('sm:flex', scrollable);
+      btnR.classList.toggle('sm:flex', scrollable);
+      if (scrollable) {
+        btnL.onclick = () => carousel.scrollBy({ left: -300, behavior: 'smooth' });
+        btnR.onclick = () => carousel.scrollBy({ left: 300, behavior: 'smooth' });
+      }
+    }
+    setTimeout(() => {
+      updateScrollButtons('docs-carousel', 'scroll-docs-left', 'scroll-docs-right');
+      updateScrollButtons('repo-carousel', 'scroll-left', 'scroll-right');
+    }, 1500);
 
     // Repos carousel
     async function loadRepos() {
@@ -254,18 +265,11 @@
             </div>
           </a>
         `).join('');
+        updateScrollButtons('repo-carousel', 'scroll-left', 'scroll-right');
       } catch (e) {
         carousel.innerHTML = '<p class="text-gray-600 text-xs font-mono">could not fetch repos</p>';
       }
     }
-
-    // Carousel scroll buttons
-    document.getElementById('scroll-left').addEventListener('click', () => {
-      document.getElementById('repo-carousel').scrollBy({ left: -300, behavior: 'smooth' });
-    });
-    document.getElementById('scroll-right').addEventListener('click', () => {
-      document.getElementById('repo-carousel').scrollBy({ left: 300, behavior: 'smooth' });
-    });
 
     setTimeout(loadRepos, 1200);
   </script>
