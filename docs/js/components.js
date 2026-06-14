@@ -66,7 +66,7 @@ function loadFooter() {
   footer.innerHTML = `
 <footer class="bg-gray-950 border-t border-violet-900/50 mt-auto">
   <div class="max-w-4xl mx-auto px-4 py-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div>
         <h5 class="font-mono font-bold text-violet-400 mb-3">~/fahadh</h5>
         <p class="text-gray-500 text-sm">Created by Ahmad Fahadh Ilyas.</p>
@@ -74,16 +74,11 @@ function loadFooter() {
       </div>
       <div>
         <h5 class="font-mono font-bold text-violet-400 mb-3">links</h5>
-        <ul class="space-y-1 text-sm font-mono">
+        <ul class="space-y-1 text-sm font-mono columns-2">
           <li><a href="./" class="text-gray-500 hover:text-violet-400 transition-colors">/home</a></li>
           <li><a href="./about.html" class="text-gray-500 hover:text-violet-400 transition-colors">/about</a></li>
           <li><a href="./repos.html" class="text-gray-500 hover:text-violet-400 transition-colors">/repos</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5 class="font-mono font-bold text-violet-400 mb-3">docs</h5>
-        <ul class="space-y-1 text-sm font-mono">
-          <li><a href="./docs.html" class="text-gray-500 hover:text-violet-400 transition-colors">kubernetes</a></li>
+          <li><a href="./docs.html" class="text-gray-500 hover:text-violet-400 transition-colors">/docs</a></li>
         </ul>
       </div>
     </div>
