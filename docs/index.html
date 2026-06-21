@@ -184,6 +184,32 @@
         <span class="px-3 py-1 text-xs font-mono rounded-full bg-purple-950/50 text-purple-400 border border-purple-900/50">deepseek</span>
       </div>
     </section>
+
+    <!-- Contact form -->
+    <section class="mt-16 pt-8 border-t border-gray-800">
+      <h2 class="font-mono text-violet-400 text-lg mb-4">&gt; ./contact.sh</h2>
+      <form action="https://script.google.com/macros/s/AKfycbxCaGnCDQWGk_B4g9egMt3FMwi_EseWhxwaONPrgWIG2o6TVtBD7HTRmx0crPH_28AU0g/exec" method="POST" class="border border-gray-800 rounded-lg p-6 bg-gray-900/50 space-y-4">
+        <div>
+          <label for="contact-email" class="block font-mono text-xs text-gray-500 mb-1.5">email</label>
+          <input type="email" id="contact-email" name="email" required placeholder="you@example.com" class="w-full bg-gray-950 border border-gray-700 rounded px-3 py-2 font-mono text-sm text-gray-300 placeholder-gray-600 focus:outline-none focus:border-violet-700 focus:ring-1 focus:ring-violet-500/30 transition-colors">
+        </div>
+        <div>
+          <label for="contact-title" class="block font-mono text-xs text-gray-500 mb-1.5">title</label>
+          <input type="text" id="contact-title" name="title" required placeholder="subject line" class="w-full bg-gray-950 border border-gray-700 rounded px-3 py-2 font-mono text-sm text-gray-300 placeholder-gray-600 focus:outline-none focus:border-violet-700 focus:ring-1 focus:ring-violet-500/30 transition-colors">
+        </div>
+        <div>
+          <label for="contact-message" class="block font-mono text-xs text-gray-500 mb-1.5">message</label>
+          <textarea id="contact-message" name="message" required rows="4" placeholder="your message..." class="w-full bg-gray-950 border border-gray-700 rounded px-3 py-2 font-mono text-sm text-gray-300 placeholder-gray-600 focus:outline-none focus:border-violet-700 focus:ring-1 focus:ring-violet-500/30 transition-colors resize-none"></textarea>
+        </div>
+        <div style="position:absolute;left:-9999px" aria-hidden="true">
+          <input type="checkbox" name="_honey" value="1" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" name="load_time" id="load-time">
+        <button type="submit" class="font-mono text-sm px-5 py-2 border border-violet-700 text-violet-400 rounded hover:bg-violet-950/50 hover:border-violet-500 transition-all focus:outline-none focus:ring-2 focus:ring-violet-500/30">
+          $ send
+        </button>
+      </form>
+    </section>
   </main>
 
   <div id="footer-placeholder"></div>
@@ -192,6 +218,10 @@
   <script src="js/components.js"></script>
   <script src="js/cache.js"></script>
   <script>
+    // Speed trap: timestamp when form becomes available
+    var lt = document.getElementById('load-time');
+    if (lt) lt.value = Date.now();
+
     // Typing animation
     const phrases = ['python -c "import torch; print(torch.cuda.is_available())"', 'nvidia-smi', 'pip list | grep -E "transformers|vllm|torch"', 'ls -la'];
     let phraseIdx = 0;
