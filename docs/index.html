@@ -254,7 +254,7 @@
         const repos = await cachedFetch('https://api.github.com/users/fahadh4ilyas/repos?sort=updated&per_page=100', { cacheKey: 'fahadh-repos' });
         if (!repos.length) return;
 
-        carousel.innerHTML = repos.map(repo => `
+        carousel.innerHTML = repos.slice(0, 10).map(repo => `
           <a href="${repo.html_url}" target="_blank" rel="noopener" class="flex-shrink-0 w-64 border border-gray-800 rounded-lg p-4 bg-gray-900/30 hover:border-violet-700 hover:bg-gray-900/50 transition-all group">
             <h3 class="font-mono text-violet-400 group-hover:text-violet-300 transition-colors text-sm truncate">${repo.name}</h3>
             <p class="text-gray-500 text-xs mt-1.5 line-clamp-2 leading-relaxed">${repo.description || '<span class="italic text-gray-600">no description</span>'}</p>
