@@ -75,7 +75,12 @@
   <div id="navbar-placeholder"></div>
 
   <main class="flex-1 max-w-3xl mx-auto px-4 py-16 w-full">
-    <h1 class="font-mono text-violet-400 text-2xl mb-2">&gt; cat /github/repos.json</h1>
+    <div class="flex items-center justify-between mb-2">
+      <h1 class="font-mono text-violet-400 text-2xl">&gt; cat /github/repos.json</h1>
+      <button onclick="refreshRepos()" class="font-mono text-xs px-3 py-1.5 border border-gray-700 text-gray-400 rounded hover:border-violet-700 hover:text-violet-400 transition-all" id="refresh-btn" title="Clear cache and re-fetch">
+        refresh
+      </button>
+    </div>
     <p class="text-gray-500 text-sm font-mono mb-8">fetching from api.github.com/users/fahadh4ilyas/repos...</p>
 
     <div id="repo-list" class="space-y-4">
@@ -93,8 +98,10 @@
     </div>
 
     <div id="error-msg" class="hidden border border-red-900/50 rounded-lg p-6 bg-red-950/20 text-red-400 font-mono text-sm">
-      Failed to fetch repositories. <button onclick="location.reload()" class="text-red-300 underline hover:text-red-200">Retry</button>
+      Failed to fetch repositories. <button onclick="fetchRepos()" class="text-red-300 underline hover:text-red-200">Retry</button>
     </div>
+
+    <div id="pagination" class="flex items-center justify-center gap-3 mt-8 font-mono text-sm"></div>
   </main>
 
   <div id="footer-placeholder"></div>
@@ -102,60 +109,106 @@
   <script src="js/theme.js"></script>
   <script src="js/theme.js"></script>
   <script src="js/components.js"></script>
+  <script src="js/cache.js"></script>
   <script>
+    var allRepos = [];
+    var currentPage = 1;
+    var PER_PAGE = 10;
+    var CACHE_KEY = 'fahadh-repos';
+    var API_URL = 'https://api.github.com/users/fahadh4ilyas/repos?sort=updated&per_page=100';
+
+    function repoCard(repo) {
+      return '<a href="' + repo.html_url + '" target="_blank" rel="noopener" class="block border border-gray-800 rounded-lg p-5 bg-gray-900/30 hover:border-violet-700 hover:bg-gray-900/50 transition-all group">'
+        + '<div class="flex items-start justify-between gap-3">'
+        + '<div class="flex-1 min-w-0">'
+        + '<h3 class="font-mono text-violet-400 group-hover:text-violet-300 transition-colors text-base truncate">' + repo.name + '</h3>'
+        + '<p class="text-gray-500 text-sm mt-1 line-clamp-2">' + (repo.description || '<span class="italic text-gray-600">no description</span>') + '</p>'
+        + '</div>'
+        + '<div class="flex items-center gap-3 flex-shrink-0">'
+        + (repo.language ? '<span class="text-xs font-mono px-2 py-0.5 rounded-full border border-gray-700 text-gray-400">' + repo.language + '</span>' : '')
+        + '<svg class="w-4 h-4 text-gray-700 group-hover:text-violet-500 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>'
+        + '</div>'
+        + '</div>'
+        + '<div class="flex items-center gap-4 mt-3 text-xs text-gray-600 font-mono">'
+        + (repo.stargazers_count > 0 ? '<span>⭐ ' + repo.stargazers_count + '</span>' : '')
+        + (repo.fork ? '<span>🍴 fork</span>' : '')
+        + '<span>updated ' + timeAgo(repo.updated_at) + '</span>'
+        + '</div>'
+        + '</a>';
+    }
+
     async function fetchRepos() {
-      const container = document.getElementById('repo-list');
-      const errorEl = document.getElementById('error-msg');
+      var container = document.getElementById('repo-list');
+      var errorEl = document.getElementById('error-msg');
+      var paginationEl = document.getElementById('pagination');
+      var btn = document.getElementById('refresh-btn');
+
+      errorEl.classList.add('hidden');
+      container.classList.remove('hidden');
+      container.innerHTML = '<div class="border border-gray-800 rounded-lg p-6 bg-gray-900/30 animate-pulse"><div class="h-5 bg-gray-800 rounded w-48 mb-2"></div><div class="h-4 bg-gray-800 rounded w-96 mb-3"></div><div class="h-3 bg-gray-800 rounded w-24"></div></div>';
+      paginationEl.innerHTML = '';
+      if (btn) { btn.disabled = true; btn.textContent = '...'; }
 
       try {
-        const resp = await fetch('https://api.github.com/users/fahadh4ilyas/repos?sort=updated&per_page=30');
-        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        const repos = await resp.json();
-
-        if (!repos.length) {
+        allRepos = await cachedFetch(API_URL, { cacheKey: CACHE_KEY });
+        if (!allRepos.length) {
           container.innerHTML = '<p class="text-gray-500 font-mono text-sm">No public repositories found.</p>';
           return;
         }
-
-        container.innerHTML = repos.map(repo => `
-          <a href="${repo.html_url}" target="_blank" rel="noopener" class="block border border-gray-800 rounded-lg p-5 bg-gray-900/30 hover:border-violet-700 hover:bg-gray-900/50 transition-all group">
-            <div class="flex items-start justify-between gap-3">
-              <div class="flex-1 min-w-0">
-                <h3 class="font-mono text-violet-400 group-hover:text-violet-300 transition-colors text-base truncate">
-                  ${repo.name}
-                </h3>
-                <p class="text-gray-500 text-sm mt-1 line-clamp-2">${repo.description || '<span class="italic text-gray-600">no description</span>'}</p>
-              </div>
-              <div class="flex items-center gap-3 flex-shrink-0">
-                ${repo.language ? `<span class="text-xs font-mono px-2 py-0.5 rounded-full border border-gray-700 text-gray-400">${repo.language}</span>` : ''}
-                <svg class="w-4 h-4 text-gray-700 group-hover:text-violet-500 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                </svg>
-              </div>
-            </div>
-            <div class="flex items-center gap-4 mt-3 text-xs text-gray-600 font-mono">
-              ${repo.stargazers_count > 0 ? `<span>⭐ ${repo.stargazers_count}</span>` : ''}
-              ${repo.fork ? '<span>🍴 fork</span>' : ''}
-              <span>updated ${timeAgo(repo.updated_at)}</span>
-            </div>
-          </a>
-        `).join('');
-
+        currentPage = 1;
+        renderPage();
+        renderPagination();
       } catch (e) {
         container.classList.add('hidden');
         errorEl.classList.remove('hidden');
+        paginationEl.innerHTML = '';
         console.error('GitHub API error:', e);
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = 'refresh'; }
       }
     }
 
+    function renderPage() {
+      var container = document.getElementById('repo-list');
+      var start = (currentPage - 1) * PER_PAGE;
+      var pageRepos = allRepos.slice(start, start + PER_PAGE);
+      container.innerHTML = pageRepos.map(repoCard).join('');
+    }
+
+    function renderPagination() {
+      var totalPages = Math.ceil(allRepos.length / PER_PAGE);
+      var el = document.getElementById('pagination');
+      if (totalPages <= 1) { el.innerHTML = ''; return; }
+
+      var html = '';
+      html += '<button onclick="goToPage(' + (currentPage - 1) + ')" class="px-3 py-1.5 border border-gray-700 rounded text-gray-400 hover:border-violet-700 hover:text-violet-400 transition-all disabled:opacity-30 disabled:cursor-not-allowed" ' + (currentPage === 1 ? 'disabled' : '') + '>prev</button>';
+      html += '<span class="text-gray-500">' + currentPage + ' / ' + totalPages + '</span>';
+      html += '<button onclick="goToPage(' + (currentPage + 1) + ')" class="px-3 py-1.5 border border-gray-700 rounded text-gray-400 hover:border-violet-700 hover:text-violet-400 transition-all disabled:opacity-30 disabled:cursor-not-allowed" ' + (currentPage === totalPages ? 'disabled' : '') + '>next</button>';
+      el.innerHTML = html;
+    }
+
+    function goToPage(page) {
+      var totalPages = Math.ceil(allRepos.length / PER_PAGE);
+      if (page < 1 || page > totalPages) return;
+      currentPage = page;
+      renderPage();
+      renderPagination();
+      document.getElementById('repo-list').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function refreshRepos() {
+      clearCache(CACHE_KEY);
+      fetchRepos();
+    }
+
     function timeAgo(dateStr) {
-      const now = new Date();
-      const then = new Date(dateStr);
-      const diff = Math.floor((now - then) / 1000);
+      var now = new Date();
+      var then = new Date(dateStr);
+      var diff = Math.floor((now - then) / 1000);
       if (diff < 60) return 'just now';
-      if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
-      if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
-      if (diff < 604800) return `${Math.floor(diff / 86400)}d ago`;
+      if (diff < 3600) return Math.floor(diff / 60) + 'm ago';
+      if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
+      if (diff < 604800) return Math.floor(diff / 86400) + 'd ago';
       return then.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     }
 
