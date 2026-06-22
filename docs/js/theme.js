@@ -20,6 +20,18 @@
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem(KEY, theme);
     updateIcons(theme);
+
+    // Sync Turnstile widget theme
+    var widget = document.getElementById('turnstile-widget');
+    if (widget && window.turnstile) {
+      var id = widget.getAttribute('data-widget-id');
+      if (id) window.turnstile.reset(id);
+      widget.removeAttribute('data-widget-id');
+      window.turnstile.render(widget, {
+        sitekey: widget.getAttribute('data-sitekey'),
+        theme: theme
+      });
+    }
   }
 
   // Called by components.js after navbar icons are injected into DOM

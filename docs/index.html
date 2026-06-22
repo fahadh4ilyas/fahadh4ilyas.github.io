@@ -7,8 +7,10 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://challenges.cloudflare.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script>
     tailwind.config = {
       theme: {
@@ -204,6 +206,7 @@
         <div style="position:absolute;left:-9999px" aria-hidden="true">
           <input type="checkbox" name="_honey" value="1" tabindex="-1" autocomplete="off">
         </div>
+        <div class="cf-turnstile" id="turnstile-widget" data-sitekey="0x4AAAAAADo8vPHeIGaZQCwF"></div>
         <input type="hidden" name="load_time" id="load-time">
         <button type="submit" id="contact-submit-btn" class="font-mono text-sm px-5 py-2 border border-violet-700 text-violet-400 rounded hover:bg-violet-950/50 hover:border-violet-500 transition-all focus:outline-none focus:ring-2 focus:ring-violet-500/30 disabled:opacity-50 disabled:cursor-not-allowed">
           $ send
@@ -232,11 +235,21 @@
 
       form.addEventListener('submit', function(e) {
         e.preventDefault();
+
+        // Check Turnstile
+        var token = (typeof turnstile !== 'undefined') ? turnstile.getResponse() : '';
+        if (!token) {
+          result.textContent = '=> please complete the captcha';
+          result.className = 'mt-3 font-mono text-sm text-red-400';
+          return;
+        }
+
         btn.disabled = true;
         btn.textContent = '$ sending...';
         result.classList.add('hidden');
 
         var data = new FormData(form);
+        data.append('cf-turnstile-response', token);
 
         fetch(form.action, { method: 'POST', body: data })
           .then(function(res) { return res.json(); })
