@@ -16,22 +16,31 @@
     }
   }
 
-  function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem(KEY, theme);
-    updateIcons(theme);
-
-    // Sync Turnstile widget theme
+  function renderTurnstile(theme) {
     var widget = document.getElementById('turnstile-widget');
-    if (widget && window.turnstile) {
-      var id = widget.getAttribute('data-widget-id');
-      if (id) window.turnstile.reset(id);
-      widget.removeAttribute('data-widget-id');
+    if (!widget) return;
+    var prevId = widget.getAttribute('data-widget-id');
+    if (prevId && window.turnstile) {
+      window.turnstile.remove(parseInt(prevId, 10));
+    }
+    // Clear any leftover iframe
+    widget.innerHTML = '';
+    widget.removeAttribute('data-widget-id');
+    if (window.turnstile) {
       window.turnstile.render(widget, {
         sitekey: widget.getAttribute('data-sitekey'),
         theme: theme
       });
+    } else {
+      setTimeout(function() { renderTurnstile(theme); }, 200);
     }
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem(KEY, theme);
+    updateIcons(theme);
+    renderTurnstile(theme);
   }
 
   // Called by components.js after navbar icons are injected into DOM
