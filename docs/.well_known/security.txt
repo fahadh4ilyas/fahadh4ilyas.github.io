@@ -1,6 +1,0 @@
-# Hello! If you have found a security vulnerability on fahadh.dev, 
-# please report it using the contact information below.
-
-Contact: mailto:hello@fahadh.dev
-Preferred-Languages: en
-Expires: 2027-06-20T00:00:00.000Z
