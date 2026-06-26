@@ -26,6 +26,7 @@ function loadNavbar() {
           <a href="./about.html" class="block px-3 py-2 rounded transition-colors ${isAbout ? 'text-violet-400 bg-violet-950/50' : 'text-gray-400 hover:text-violet-400'}">/about</a>
           <a href="./repos.html" class="block px-3 py-2 rounded transition-colors ${isRepos ? 'text-violet-400 bg-violet-950/50' : 'text-gray-400 hover:text-violet-400'}">/repos</a>
           <a href="./docs.html" class="block px-3 py-2 rounded transition-colors ${isDocs ? 'text-violet-400 bg-violet-950/50' : 'text-gray-400 hover:text-violet-400'}">/docs</a>
+          <a href="./assets/pdfs/cv.pdf" class="block px-3 py-2 rounded transition-colors text-gray-400 hover:text-violet-400">/cv</a>
         </div>
         <button onclick="toggleTheme()" class="p-1.5 rounded text-gray-400 hover:text-violet-400 transition-colors" aria-label="Toggle theme">
           <svg id="theme-icon-dark" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,6 +49,7 @@ function loadNavbar() {
     <a href="./about.html" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">/about</a>
     <a href="./repos.html" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">/repos</a>
     <a href="./docs.html" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">/docs</a>
+    <a href="./assets/pdfs/cv.pdf" class="block px-4 py-2 text-gray-400 hover:text-violet-400 transition-colors">/cv</a>
   </div>
 </nav>`;
 
@@ -79,6 +81,7 @@ function loadFooter() {
           <li><a href="./about.html" class="text-gray-500 hover:text-violet-400 transition-colors">/about</a></li>
           <li><a href="./repos.html" class="text-gray-500 hover:text-violet-400 transition-colors">/repos</a></li>
           <li><a href="./docs.html" class="text-gray-500 hover:text-violet-400 transition-colors">/docs</a></li>
+          <li><a href="./assets/pdfs/cv.pdf" class="text-gray-500 hover:text-violet-400 transition-colors">/cv</a></li>
         </ul>
       </div>
     </div>
