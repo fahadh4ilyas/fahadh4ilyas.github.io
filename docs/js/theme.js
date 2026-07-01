@@ -19,6 +19,8 @@
   function renderTurnstile(theme) {
     var widget = document.getElementById('turnstile-widget');
     if (!widget) return;
+    // Skip if widget is hidden (inside closed modal)
+    if (!widget.offsetParent) return;
     var prevId = widget.getAttribute('data-widget-id');
     if (prevId && window.turnstile) {
       window.turnstile.remove(parseInt(prevId, 10));
