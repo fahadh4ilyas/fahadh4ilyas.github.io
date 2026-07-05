@@ -10,67 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            mono: ['"JetBrains Mono"', 'monospace'],
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    /* Light theme overrides */
-    [data-theme="light"] body,
-    [data-theme="light"] .bg-gray-950 { background: #f8fafc !important; }
-    [data-theme="light"] .bg-gray-900 { background: #ffffff !important; }
-    [data-theme="light"] .bg-gray-900\/30 { background: rgba(255,255,255,0.7) !important; }
-    [data-theme="light"] .bg-gray-900\/50 { background: rgba(255,255,255,0.85) !important; }
-    [data-theme="light"] .bg-gray-800\/50 { background: rgba(241,245,249,0.8) !important; }
-    [data-theme="light"] .bg-gray-800 { background: #e2e8f0 !important; }
-    [data-theme="light"] .text-gray-300,
-    [data-theme="light"] .text-gray-400 { color: #334155 !important; }
-    [data-theme="light"] .text-gray-500 { color: #64748b !important; }
-    [data-theme="light"] .text-gray-600 { color: #94a3b8 !important; }
-    [data-theme="light"] .text-gray-700 { color: #cbd5e1 !important; }
-    [data-theme="light"] .border-gray-800 { border-color: #e2e8f0 !important; }
-    [data-theme="light"] .border-gray-700 { border-color: #cbd5e1 !important; }
-    [data-theme="light"] .border-violet-900\/50 { border-color: rgba(139,92,246,0.2) !important; }
-    [data-theme="light"] .hover\:bg-gray-800\/50:hover { background: rgba(226,232,240,0.6) !important; }
-    [data-theme="light"] .hover\:bg-gray-900\/50:hover { background: rgba(255,255,255,0.9) !important; }
-    [data-theme="light"] .bg-violet-950\/50 { background: rgba(139,92,246,0.08) !important; }
-    [data-theme="light"] .hover\:bg-violet-950\/50:hover { background: rgba(139,92,246,0.12) !important; }
-
-    /* Pill badges — readable in light mode */
-    [data-theme="light"] .bg-violet-950\/50 { background: rgba(139,92,246,0.1) !important; }
-    [data-theme="light"] .text-violet-400 { color: #7c3aed !important; }
-    [data-theme="light"] .border-violet-900\/50 { border-color: rgba(139,92,246,0.25) !important; }
-    [data-theme="light"] .bg-blue-950\/50 { background: rgba(59,130,246,0.1) !important; }
-    [data-theme="light"] .text-blue-400 { color: #2563eb !important; }
-    [data-theme="light"] .border-blue-900\/50 { border-color: rgba(59,130,246,0.25) !important; }
-    [data-theme="light"] .bg-yellow-950\/50 { background: rgba(234,179,8,0.1) !important; }
-    [data-theme="light"] .text-yellow-400 { color: #ca8a04 !important; }
-    [data-theme="light"] .border-yellow-900\/50 { border-color: rgba(234,179,8,0.3) !important; }
-    [data-theme="light"] .bg-purple-950\/50 { background: rgba(168,85,247,0.1) !important; }
-    [data-theme="light"] .text-purple-400 { color: #9333ea !important; }
-    [data-theme="light"] .border-purple-900\/50 { border-color: rgba(168,85,247,0.25) !important; }
-    [data-theme="light"] .bg-orange-950\/50 { background: rgba(249,115,22,0.1) !important; }
-    [data-theme="light"] .text-orange-400 { color: #ea580c !important; }
-    [data-theme="light"] .border-orange-900\/50 { border-color: rgba(249,115,22,0.25) !important; }
-    [data-theme="light"] .bg-cyan-950\/50 { background: rgba(6,182,212,0.1) !important; }
-    [data-theme="light"] .text-cyan-400 { color: #0891b2 !important; }
-    [data-theme="light"] .border-cyan-900\/50 { border-color: rgba(6,182,212,0.25) !important; }
-    [data-theme="light"] .bg-green-950\/50 { background: rgba(34,197,94,0.1) !important; }
-    [data-theme="light"] .text-green-400 { color: #16a34a !important; }
-    [data-theme="light"] .border-green-900\/50 { border-color: rgba(34,197,94,0.25) !important; }
-    [data-theme="light"] .bg-amber-950\/50 { background: rgba(245,158,11,0.1) !important; }
-    [data-theme="light"] .text-amber-400 { color: #d97706 !important; }
-    [data-theme="light"] .border-amber-900\/50 { border-color: rgba(245,158,11,0.25) !important; }
-  </style>
+  <link rel="stylesheet" href="css/tailwind.min.css">
+  <link rel="stylesheet" href="css/theme.css">
   <link rel="preconnect" href="https://challenges.cloudflare.com">
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
