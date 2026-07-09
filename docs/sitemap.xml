@@ -121,57 +121,57 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://fahadh.dev/LLM-Documentation/</loc>
+    <loc>https://fahadh.dev/llm-documentation/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://fahadh.dev/LLM-Documentation/pendahuluan</loc>
+    <loc>https://fahadh.dev/llm-documentation/pendahuluan</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fahadh.dev/LLM-Documentation/spesifikasi-komputer</loc>
+    <loc>https://fahadh.dev/llm-documentation/spesifikasi-komputer</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://fahadh.dev/LLM-Documentation/persiapan-komputer</loc>
+    <loc>https://fahadh.dev/llm-documentation/persiapan-komputer</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fahadh.dev/LLM-Documentation/persiapan-komputer/1-instalasi-nvidia-driver-cuda-toolkit</loc>
+    <loc>https://fahadh.dev/llm-documentation/persiapan-komputer/1-instalasi-nvidia-driver-cuda-toolkit</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://fahadh.dev/LLM-Documentation/persiapan-komputer/2-instalasi-docker-optional</loc>
+    <loc>https://fahadh.dev/llm-documentation/persiapan-komputer/2-instalasi-docker-optional</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://fahadh.dev/LLM-Documentation/persiapan-komputer/3-instalasi-anaconda</loc>
+    <loc>https://fahadh.dev/llm-documentation/persiapan-komputer/3-instalasi-anaconda</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://fahadh.dev/LLM-Documentation/proses-load-llm</loc>
+    <loc>https://fahadh.dev/llm-documentation/proses-load-llm</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://fahadh.dev/LLM-Documentation/proses-inference-llm</loc>
+    <loc>https://fahadh.dev/llm-documentation/proses-inference-llm</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fahadh.dev/LLM-Documentation/proses-inference-llm/1-deploy-dengan-vllm</loc>
+    <loc>https://fahadh.dev/llm-documentation/proses-inference-llm/1-deploy-dengan-vllm</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://fahadh.dev/LLM-Documentation/proses-inference-llm/2-interaksi-dengan-vllm</loc>
+    <loc>https://fahadh.dev/llm-documentation/proses-inference-llm/2-interaksi-dengan-vllm</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
