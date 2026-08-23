@@ -1,10 +1,29 @@
 /**
  * Theme toggle — switches between dark and light mode.
- * Persists to localStorage. Applies to <html data-theme="...">.
+ * Persists to a .fahadh.dev cookie (shared across subdomains) and localStorage (same-origin fallback).
+ * Applies to <html data-theme="...">.
  */
 (function() {
   const KEY = 'fahadh-theme';
-  const stored = localStorage.getItem(KEY) || 'light';
+  const COOKIE_DOMAIN = '.fahadh.dev';
+
+  function onFahadhDomain() {
+    const host = window.location.hostname;
+    return host === 'fahadh.dev' || host.endsWith('.fahadh.dev');
+  }
+
+  function readCookie() {
+    const match = document.cookie.match(new RegExp('(?:^|;\\s*)' + KEY + '=([^;]*)'));
+    return match ? decodeURIComponent(match[1]) : null;
+  }
+
+  function writeCookie(theme) {
+    if (!onFahadhDomain()) return;
+    const maxAge = 60 * 60 * 24 * 365; // 1 year
+    document.cookie = KEY + '=' + encodeURIComponent(theme) + '; Domain=' + COOKIE_DOMAIN + '; Path=/; SameSite=Lax; Max-Age=' + maxAge;
+  }
+
+  const stored = readCookie() || localStorage.getItem(KEY) || 'light';
   applyTheme(stored);
 
   function updateIcons(theme) {
@@ -41,6 +60,7 @@
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem(KEY, theme);
+    writeCookie(theme);
     updateIcons(theme);
     renderTurnstile(theme);
   }
