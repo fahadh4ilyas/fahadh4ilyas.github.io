@@ -82,7 +82,7 @@ function loadFooter() {
           <li><a href="./repos.html" class="text-gray-500 hover:text-violet-400 transition-colors">/repos</a></li>
           <li><a href="./docs.html" class="text-gray-500 hover:text-violet-400 transition-colors">/docs</a></li>
           <li><a href="./assets/pdfs/cv.pdf" class="text-gray-500 hover:text-violet-400 transition-colors">/cv</a></li>
-          <li><a href="https://shop.fahadh.dev" class="text-gray-500 hover:text-violet-400 transition-colors" target="_blank" rel="noopener">/shop</a></li>
+          <li><a href="https://shop.fahadh.dev" class="text-gray-500 hover:text-violet-400 transition-colors">/shop</a></li>
         </ul>
       </div>
     </div>
